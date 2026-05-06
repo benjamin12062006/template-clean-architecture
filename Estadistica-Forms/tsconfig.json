@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // "baseUrl": ".",
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -19,7 +20,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@app": ["./src/app/index.ts"],
+      "@shared": ["./src/shared/index.ts"],
+      "@shared/*": ["./src/shared/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@composition/*": ["./src/composition/*"],
+      "@bootstrap/*": ["./src/bootstrap/*"],
+      "@ui": ["./src/ui/index.ts"],
+      "@ui/*": ["./src/ui/*"]
     }
   },
   "include": [

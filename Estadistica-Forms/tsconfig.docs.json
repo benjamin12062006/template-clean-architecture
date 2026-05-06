@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./src-aprendisaje/*", "./src/*"],
+      "@app": ["./src-aprendisaje/app/index.ts", "./src/app/index.ts"],
+      "@shared": ["./src-aprendisaje/shared/index.ts", "./src/shared/index.ts"],
+      "@shared/*": ["./src-aprendisaje/shared/*", "./src/shared/*"],
+      "@modules/*": ["./src-aprendisaje/modules/*", "./src/modules/*"],
+      "@composition/*": ["./src-aprendisaje/composition/*", "./src/composition/*"],
+      "@bootstrap/*": ["./src-aprendisaje/bootstrap/*", "./src/bootstrap/*"],
+      "@ui": ["./src-aprendisaje/ui/index.ts", "./src/ui/index.ts"],
+      "@ui/*": ["./src-aprendisaje/ui/*", "./src/ui/*"]
+    }
+  },
+  "include": [
+    "src-aprendisaje/**/*.ts",
+    "src-aprendisaje/**/*.tsx"
+  ]
+}

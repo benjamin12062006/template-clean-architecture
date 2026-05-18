@@ -45,7 +45,6 @@ export function useEstadisticasPage(deps: Deps): UseEstadisticasPageReturn {
 
   const onSelectCategoria = (categoria: string | null) => {
     controller.selectCategoria(categoria);
-    void controller.loadEstadisticas(categoria ?? undefined);
   };
 
   const onRefresh = () => {

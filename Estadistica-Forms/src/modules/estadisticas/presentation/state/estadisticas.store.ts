@@ -82,7 +82,10 @@ export function createEstadisticasStore(): EstadisticasStoreInstance {
     setSuccess: (data) =>
       setState((current) => ({ ...current, estadisticas: AS.success(data) })),
     setFailure: (failure) =>
-      setState((current) => ({ ...current, estadisticas: AS.failure(failure) })),
+      setState((current) => ({
+        ...current,
+        estadisticas: AS.failure(failure),
+      })),
     setSelectedCategoria: (categoria) =>
       setState((current) => ({ ...current, selectedCategoria: categoria })),
     reset: () =>

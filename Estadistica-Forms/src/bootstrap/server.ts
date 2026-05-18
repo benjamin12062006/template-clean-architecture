@@ -8,12 +8,11 @@
 
 import { createHttpClient } from '@shared/http/http-client';
 
-import { clientEnv } from './env/client-env';
 import { serverEnv } from './env/server-env';
 
 export function createServerHttpClient() {
   return createHttpClient({
-    baseUrl: clientEnv.apiBaseUrl,
+    baseUrl: serverEnv.apiBaseUrl,
     defaultHeaders: {
       Accept: 'application/json',
     },

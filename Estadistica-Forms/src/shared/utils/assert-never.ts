@@ -12,7 +12,10 @@
  *   }
  */
 export function assertNever(value: never, message?: string): never {
+  // `never` en entrada: este punto deberia ser inalcanzable si el switch es exhaustivo.
+  // `never` en salida: siempre lanza, nunca retorna.
   throw new Error(
+    // `??`: usa `message` si existe; si no, usa el texto por defecto.
     message ?? `[assertNever] Unhandled discriminated union value: ${JSON.stringify(value)}`,
   );
 }

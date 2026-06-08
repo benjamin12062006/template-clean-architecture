@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Test and coverage artifacts
+coverage/
+test-results/
+playwright-report/
+
+# Runtime and framework caches
+.turbo/
+.swc/
+.cache/
+.eslintcache
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+bun-debug.log*
+bun-error.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Deployment
+.vercel/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Certificates and local secrets
+*.pem
+*.key

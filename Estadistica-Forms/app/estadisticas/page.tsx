@@ -16,7 +16,6 @@ export default function EstadisticasPage() {
   return (
     <EstadisticasPageView
       controller={estadisticasModule.controller}
-      store={estadisticasModule.store}
     />
   );
 }

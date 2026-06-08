@@ -21,6 +21,7 @@ export type EstadisticasPolicyFailure = ReturnType<
 export function validateCategoriaFilter(
   categoria: string | undefined,
 ): Result<void, EstadisticasPolicyFailure> {
+  // Policy = regla previa del flujo; si falla, el use case corta antes del gateway.
   if (categoria !== undefined && categoria.trim().length === 0) {
     return err(
       ApplicationFailure.policyRejected(

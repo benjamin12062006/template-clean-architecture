@@ -9,7 +9,7 @@
  *
  * Uso en view model:
  *   if (AsyncState.isSuccess(state)) { ... state.data ... }
- */
+ */   
 
 // ---------------------------------------------------------------------------
 // Types
@@ -43,6 +43,7 @@ export type AsyncState<T, F> =
 // ---------------------------------------------------------------------------
 
 export const AsyncState = {
+  // `()` => funcion sin parametros.
   idle: (): IdleState => ({ status: 'idle' }),
 
   loading: (): LoadingState => ({ status: 'loading' }),
@@ -59,7 +60,7 @@ export const AsyncState = {
     failedAt: Date.now(),
   }),
 
-  // Guards
+  // Guards: retornan boolean en runtime y refinan tipos en TypeScript (`s is ...`).
   isIdle: <T, F>(s: AsyncState<T, F>): s is IdleState => s.status === 'idle',
   isLoading: <T, F>(s: AsyncState<T, F>): s is LoadingState => s.status === 'loading',
   isSuccess: <T, F>(s: AsyncState<T, F>): s is SuccessState<T> => s.status === 'success',
@@ -70,9 +71,10 @@ export const AsyncState = {
     state: AsyncState<T, F>,
     fn: (data: T) => U,
   ): AsyncState<U, F> => {
-    if (state.status === 'success') {
+    if (AsyncState.isSuccess(state)) {
       return AsyncState.success(fn(state.data));
     }
+    // En no-success no hay `data`; se retorna el mismo estado sin ejecutar `fn`.
     return state as AsyncState<U, F>;
   },
 } as const;

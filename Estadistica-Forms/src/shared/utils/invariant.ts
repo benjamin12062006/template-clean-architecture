@@ -15,6 +15,7 @@ export function invariant(
   condition: boolean,
   message: string,
 ): asserts condition {
+  // `asserts condition`: si retorna, TypeScript asume que condition es true.
   if (!condition) {
     throw new Error(`[invariant] ${message}`);
   }
@@ -28,6 +29,7 @@ export function invariantDefined<T>(
   value: T | null | undefined,
   message: string,
 ): T {
+  // Aqui se devuelve `T` para usar en una asignacion directa.
   if (value === null || value === undefined) {
     throw new Error(`[invariantDefined] ${message}`);
   }

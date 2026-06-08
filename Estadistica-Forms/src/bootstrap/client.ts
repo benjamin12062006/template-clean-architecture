@@ -12,7 +12,7 @@ import { clientEnv } from './env/client-env';
 export const sharedHttpClient = createHttpClient({
   baseUrl: clientEnv.apiBaseUrl,
   defaultHeaders: {
-    'Accept': 'application/json',
+    Accept: 'application/json',
   },
   defaultTimeoutMs: 12_000,
 });

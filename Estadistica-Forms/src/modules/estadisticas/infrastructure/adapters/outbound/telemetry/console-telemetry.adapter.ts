@@ -11,6 +11,7 @@ import type { TelemetryPort } from '@modules/estadisticas/domain/ports/outbound/
 export function createConsoleTelemetryAdapter(): TelemetryPort {
   const telemetry: TelemetryPort = {
     trackEvent(name, properties) {
+      // Adapter temporal: hoy escribe logs, manana puede ser Datadog o Sentry.
       console.info(`[Telemetry] Event: ${name}`, properties ?? {});
     },
     trackError(error, context) {

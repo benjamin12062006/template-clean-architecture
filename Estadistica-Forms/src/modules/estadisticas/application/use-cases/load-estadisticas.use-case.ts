@@ -45,6 +45,7 @@ export function createLoadEstadisticasUseCase(
     ): Promise<Result<LoadEstadisticasOutput, LoadEstadisticasFailure>> {
       const start = Date.now();
 
+      // Application vive aqui: coordina reglas, puertos y output sin saber de React ni HTTP crudo.
       // 1. Policy
       const policyResult = validateCategoriaFilter(input.filter?.categoria);
       if (isErr(policyResult)) {
@@ -55,6 +56,7 @@ export function createLoadEstadisticasUseCase(
       }
 
       // 2. Gateway
+      // Port outbound: el caso de uso pide datos sin conocer la implementacion tecnica.
       const gatewayResult = await deps.estadisticasGateway.findAll(input.filter);
       if (isErr(gatewayResult)) {
         deps.telemetry.trackError(gatewayResult.failure, {

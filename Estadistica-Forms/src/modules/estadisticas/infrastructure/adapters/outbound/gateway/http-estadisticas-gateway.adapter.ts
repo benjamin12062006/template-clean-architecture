@@ -43,6 +43,7 @@ export function createHttpEstadisticasGatewayAdapter(
     async findAll(
       filter?: EstadisticasFilter,
     ): Promise<Result<ReadonlyArray<Estadistica>, InfrastructureFailure>> {
+      // Adapter HTTP = implementacion concreta del port; aqui si se hace IO real.
       const params = new URLSearchParams();
       if (filter?.categoria) params.set('categoria', filter.categoria);
       if (filter?.limite) params.set('limite', String(filter.limite));

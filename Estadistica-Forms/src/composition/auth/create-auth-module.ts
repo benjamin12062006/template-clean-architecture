@@ -16,7 +16,7 @@ type CompositionDeps = Readonly<{
   readonly httpClient: HttpClientPort;
 }>;
 
-export function createAuthModule(deps: CompositionDeps): AuthModule {
+export function c(deps: CompositionDeps): AuthModule {
   void deps;
   return { _placeholder: true };
 }

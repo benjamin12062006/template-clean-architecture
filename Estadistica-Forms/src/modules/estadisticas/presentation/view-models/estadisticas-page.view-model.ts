@@ -1,7 +1,7 @@
 /**
  * @module EstadisticasPageViewModel
  *
- * Convierte el estado de la store en props listas para la UI.
+ * Convierte el estado async de presentation en props listas para la UI.
  * Funciones puras — sin side effects, sin React, sin IO.
  *
  * La view llama estas funciones para obtener datos renderizables.
@@ -41,6 +41,7 @@ export type EstadisticasPageVM =
 export function buildEstadisticasPageVM(
   state: AsyncState<LoadEstadisticasOutput, LoadEstadisticasFailure>,
 ): EstadisticasPageVM {
+  // ViewModel = traductor final para que la view solo piense en estados visuales.
   if (AS.isIdle(state)) return { status: 'idle' };
   if (AS.isLoading(state)) return { status: 'loading' };
 
@@ -64,6 +65,7 @@ export function buildEstadisticasPageVM(
 }
 
 function buildEstadisticaCardVM(e: Estadistica): EstadisticaCardVM {
+  // Aqui el dominio se vuelve lenguaje visual: labels, formato y variantes de color.
   const tendenciaLabel =
     e.tendencia === 'ALZA' ? '↑ En alza' :
     e.tendencia === 'BAJA' ? '↓ En baja' :
@@ -86,6 +88,7 @@ function buildEstadisticaCardVM(e: Estadistica): EstadisticaCardVM {
 }
 
 function buildFailureMessage(failure: LoadEstadisticasFailure): string {
+  // Los failures tecnicos se convierten aqui en mensajes humanos para la UI.
   if ('kind' in failure) {
     switch (failure.kind) {
       case 'NETWORK_ERROR':

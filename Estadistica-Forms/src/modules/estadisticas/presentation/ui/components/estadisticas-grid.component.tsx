@@ -7,6 +7,8 @@
 
 'use client';
 
+import { memo } from 'react';
+
 import type { EstadisticaCardVM } from '../../view-models/estadisticas-page.view-model';
 import { EstadisticaCard } from './estadistica-card.component';
 
@@ -14,7 +16,7 @@ type Props = Readonly<{
   readonly items: ReadonlyArray<EstadisticaCardVM>;
 }>;
 
-export function EstadisticasGrid({ items }: Props) {
+export const EstadisticasGrid = memo(function EstadisticasGrid({ items }: Props) {
   return (
     <section
       className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
@@ -25,4 +27,4 @@ export function EstadisticasGrid({ items }: Props) {
       ))}
     </section>
   );
-}
+});

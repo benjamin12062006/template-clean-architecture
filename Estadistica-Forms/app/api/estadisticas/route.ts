@@ -4,7 +4,7 @@ const ESTADISTICAS_DEMO = [
   {
     id: 'ventas-mensuales',
     title: 'Ventas mensuales',
-    value: 15200,
+    value: 15250,
     unit: 'USD',
     category: 'ventas',
     updated_at: '2026-04-28T10:30:00.000Z',

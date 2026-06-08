@@ -11,6 +11,7 @@
 // Brand infrastructure
 // ---------------------------------------------------------------------------
 
+// Clave unica de tipo (solo compile-time). No se usa como dato real en runtime.
 declare const __brand: unique symbol;
 
 /**
@@ -20,11 +21,13 @@ declare const __brand: unique symbol;
  *   type UserId = Brand<string, 'UserId'>
  *   const id = 'abc123' as UserId   // cast explicito en el factory
  */
+// `&` combina: tipo base (`T`) + marca fantasma (`[__brand]: B`).
 export type Brand<T, B extends string> = T & { readonly [__brand]: B };
 
 /**
  * Extrae el tipo base de un branded type.
  */
+// Si T es Brand<..., ...>, extrae su base con `infer`; si no, devuelve T.
 export type Unbranded<T> = T extends Brand<infer Base, string> ? Base : T;
 
 // ---------------------------------------------------------------------------
@@ -34,21 +37,19 @@ export type Unbranded<T> = T extends Brand<infer Base, string> ? Base : T;
 /**
  * Crea un factory tipado para un branded ID.
  * Uso:
- *   const UserId = makeBrandedId<UserId>('UserId');
+ *   const UserId = makeBrandedId<UserId>();
  *   const id = UserId.create('abc');
  *   UserId.value(id); // -> 'abc'
  */
-export function makeBrandedId<T extends Brand<string, string>>(
-  _brand: string,
-): {
+export function makeBrandedId<T extends Brand<string, string>>(): {
   create: (raw: string) => T;
   value: (id: T) => string;
   is: (raw: unknown) => raw is T;
 } {
-  void _brand;
-
+  // `T extends Brand<string, string>`: T debe ser un brand basado en string.
   return {
-    create: (raw: string) => raw as T,
+    // Cast controlado: en runtime sigue siendo string, la marca vive en tipos.
+    create: (raw: string) => raw as T, 
     value: (id: T) => id as string,
     is: (raw: unknown): raw is T => typeof raw === 'string' && raw.length > 0,
   };

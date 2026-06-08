@@ -10,4 +10,5 @@ import { makeBrandedId } from '@shared/types/primitive';
 
 export type EstadisticaId = Brand<string, 'EstadisticaId'>;
 
-export const EstadisticaId = makeBrandedId<EstadisticaId>('EstadisticaId');
+// Value Object = tipo pequeño con significado propio; evita mezclar IDs por accidente.
+export const EstadisticaId = makeBrandedId<EstadisticaId>();

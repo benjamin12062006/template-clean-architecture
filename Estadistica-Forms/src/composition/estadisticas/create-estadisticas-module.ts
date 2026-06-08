@@ -2,7 +2,7 @@
  * @module CreateEstadisticasModule — Composition Root
  *
  * Unico lugar donde se conectan implementaciones concretas del modulo estadisticas.
- * Instancia adapters → use cases → controller → store → expone API a capas superiores.
+ * Instancia adapters → use cases → controller y expone API a capas superiores.
  *
  * Regla: ningun otro archivo fuera de composition/ puede hacer este wiring.
  */
@@ -11,7 +11,6 @@ import { createHttpEstadisticasGatewayAdapter } from '../../modules/estadisticas
 import { createConsoleTelemetryAdapter } from '../../modules/estadisticas/infrastructure/adapters/outbound/telemetry/console-telemetry.adapter';
 import { createLoadEstadisticasUseCase } from '../../modules/estadisticas/application/use-cases/load-estadisticas.use-case';
 import { createEstadisticasController } from '../../modules/estadisticas/presentation/controllers/estadisticas.controller';
-import { createEstadisticasStore } from '../../modules/estadisticas/presentation/state/estadisticas.store';
 import type { HttpClientPort } from '@shared/http/http-types';
 
 // ---------------------------------------------------------------------------
@@ -20,7 +19,6 @@ import type { HttpClientPort } from '@shared/http/http-types';
 
 export type EstadisticasModule = Readonly<{
   readonly controller: ReturnType<typeof createEstadisticasController>;
-  readonly store: ReturnType<typeof createEstadisticasStore>;
 }>;
 
 // ---------------------------------------------------------------------------
@@ -46,14 +44,10 @@ export function createEstadisticasModule(
     telemetry,
   });
 
-  // 3. Store
-  const store = createEstadisticasStore();
-
-  // 4. Controller
+  // 3. Controller
   const controller = createEstadisticasController({
     loadEstadisticasUseCase,
-    store,
   });
 
-  return { controller, store };
+  return { controller };
 }

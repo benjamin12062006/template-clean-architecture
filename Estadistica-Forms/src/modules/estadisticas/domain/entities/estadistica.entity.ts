@@ -24,6 +24,7 @@ import {
 // ---------------------------------------------------------------------------
 
 export type Estadistica = Readonly<{
+  // Entity = modelo central del dominio; aun no esta formateado para UI.
   readonly id: EstadisticaId;
   readonly titulo: string;
   readonly valor: number;
@@ -72,5 +73,6 @@ export function createEstadistica(
     );
   }
 
+  // `satisfies Estadistica` verifica en compile-time que este objeto cumple el tipo sin cambiar su shape real.
   return ok({ ...input } satisfies Estadistica);
 }

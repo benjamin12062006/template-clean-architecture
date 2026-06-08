@@ -16,7 +16,7 @@ export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 // Request
 // ---------------------------------------------------------------------------
 
-export type HttpHeaders = Readonly<Record<string, string>>;
+export type HttpHeaders = Readonly<Record<string, string>>; // Record: Define un objeto tipo diccionario <TipoDeLlave, TipoDeValor>
 
 export type HttpRequestConfig = Readonly<{
   readonly method: HttpMethod;
@@ -49,6 +49,12 @@ import type { InfrastructureFailure } from '../failures/infrastructure-failure';
  * Puerto del cliente HTTP compartido.
  * Todos los adapters de gateway lo reciben por injeccion.
  */
+// ---------------------------------------------------------------------------
+// Nota sobre Partial: Partial<T> convierte todas las propiedades de un tipo en opcionales (les añade ?).
+// Es útil aquí porque nos permite pasar solo la parte de la configuración (HttpRequestConfig)
+// que queremos sobreescribir (ej. headers personalizados), sin obligarnos a enviar url o method de nuevo.
+// ---------------------------------------------------------------------------
+
 export interface HttpClientPort {
   request<T>(config: HttpRequestConfig): Promise<Result<HttpResponse<T>, InfrastructureFailure>>;
   get<T>(url: string, config?: Partial<HttpRequestConfig>): Promise<Result<HttpResponse<T>, InfrastructureFailure>>;

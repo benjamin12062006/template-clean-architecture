@@ -41,6 +41,7 @@ const TREND_MAP: Record<string, EstadisticaTendencia> = {
 export function mapEstadisticaApiDtoToEntity(
   dto: EstadisticaApiDto,
 ): Result<Estadistica, InfrastructureFailure> {
+  // Mapper = frontera anti-acoplamiento; aqui se traduce API -> Entity.
   const tendencia = TREND_MAP[dto.trend];
   if (!tendencia) {
     return err(

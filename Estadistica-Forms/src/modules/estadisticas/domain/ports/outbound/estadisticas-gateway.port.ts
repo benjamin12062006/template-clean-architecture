@@ -20,6 +20,7 @@ export type EstadisticasFilter = Readonly<{
 }>;
 
 export interface EstadisticasGatewayPort {
+  // Outbound port = application pide datos, pero no sabe si vienen de HTTP, mock o storage.
   findAll(
     filter?: EstadisticasFilter,
   ): Promise<Result<ReadonlyArray<Estadistica>, InfrastructureFailure>>;

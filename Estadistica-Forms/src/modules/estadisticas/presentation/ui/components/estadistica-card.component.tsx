@@ -7,6 +7,8 @@
 
 'use client';
 
+import { memo } from 'react';
+
 import { Card } from '@ui/components/common/card.component';
 
 import type { EstadisticaCardVM } from '../../view-models/estadisticas-page.view-model';
@@ -15,7 +17,7 @@ type Props = Readonly<{
   readonly item: EstadisticaCardVM;
 }>;
 
-export function EstadisticaCard({ item }: Props) {
+export const EstadisticaCard = memo(function EstadisticaCard({ item }: Props) {
   const variantClass =
     item.tendenciaVariant === 'positive'
       ? 'border-lime-500/15 bg-lime-500/10 text-lime-400'
@@ -49,4 +51,4 @@ export function EstadisticaCard({ item }: Props) {
       </div>
     </Card>
   );
-}
+});

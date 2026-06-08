@@ -18,6 +18,7 @@ export type LoadEstadisticasFailure =
   | InfrastructureFailureType;
 
 export interface LoadEstadisticasUseCase {
+  // Inbound port = contrato de entrada que presentation puede invocar.
   execute(
     input: LoadEstadisticasInput,
   ): Promise<Result<LoadEstadisticasOutput, LoadEstadisticasFailure>>;

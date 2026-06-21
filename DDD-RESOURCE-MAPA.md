@@ -13,7 +13,7 @@ Este archivo resume el flujo generico del modulo `resource`.
 ## Presentation
 
 3. [src/modules/resource/presentation/views/resource-page.view.tsx](src/modules/resource/presentation/views/resource-page.view.tsx)
-   Entrada React minima. Recibe el controller y no renderiza visual por ahora.
+   Entrada React minima. Recibe el controller y mantiene el render sin logica visual de dominio.
 
 4. [src/modules/resource/presentation/ui/hooks/use-resource-page.ts](src/modules/resource/presentation/ui/hooks/use-resource-page.ts)
    Conecta React con el controller y mantiene `AsyncState`.

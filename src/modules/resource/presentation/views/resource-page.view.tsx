@@ -15,5 +15,9 @@ type Props = Readonly<{
 export function ResourcePageView({ controller }: Props) {
   void controller;
 
-  return null;
+  return (
+    <div>
+      Hello world!
+    </div>
+  );
 }

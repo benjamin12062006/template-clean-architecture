@@ -5,7 +5,7 @@
  * Reemplaza booleanos `isLoading / isError / data` por una union discriminada limpia.
  *
  * Uso en store:
- *   state: AsyncState<EstadisticasOutput, DomainFailure>
+ *   state: AsyncState<ResourceOutput, DomainFailure>
  *
  * Uso en view model:
  *   if (AsyncState.isSuccess(state)) { ... state.data ... }

@@ -32,7 +32,7 @@ import {
 // ---------------------------------------------------------------------------
 
 export type HttpClientConfig = Readonly<{
-  // URL base usada cuando la request trae rutas relativas como '/api/estadisticas'.
+  // URL base usada cuando la request trae rutas relativas como '/api/resources'.
   readonly baseUrl: string;
   // Headers globales del cliente; si no se pasan, empiezan como objeto vacio.
   readonly defaultHeaders?: HttpHeaders;
@@ -51,7 +51,7 @@ export function createHttpClient(config: HttpClientConfig): HttpClientPort {
     // Si rawUrl ya es absoluta, por ejemplo 'https://api.com/users',
     // no se combina con baseUrl.
     if (rawUrl.startsWith('http')) return rawUrl;
-    // Si rawUrl es relativa, por ejemplo '/api/estadisticas',
+    // Si rawUrl es relativa, por ejemplo '/api/resources',
     // se resuelve contra baseUrl, por ejemplo 'http://localhost:3000'.
     return new URL(rawUrl, baseUrl).toString();
   }
@@ -80,7 +80,7 @@ export function createHttpClient(config: HttpClientConfig): HttpClientPort {
       return err(InfrastructureFailure.http(response.status, url, body));
     }
 
-    // T es el tipo esperado por quien llamo: get<User[]>(), get<EstadisticaApiDto[]>(), etc.
+    // T es el tipo esperado por quien llamo: get<User[]>(), get<ResourceApiDto[]>(), etc.
     const dataResult = await readJsonBody<T>(response, url);
     if (isErr(dataResult)) return dataResult;
 

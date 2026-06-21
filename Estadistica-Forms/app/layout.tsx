@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Estadistica Forms",
+  title: "Hexagonal UI Template",
   description: "Base frontend hexagonal para UI profesional en Next.js",
 };
 
